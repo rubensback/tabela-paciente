@@ -1,0 +1,274 @@
+var pratoDia = document.querySelector("#sexta);
+var salada = pratodia.querySelector(".salada");
+
+
+alert - pop-up caixa de msg
+console.log - msg no console para desenvolvedor
+
+DOCUMENT - código da pagina
+document - toda a pagina
+document.querySelector("class") - exibe as querys selecionadas
+
+VARIAVEL
+var nomeVariavel - como declarar
+nomeVariavel.textContent - pegar apenas o texto do elemento selecionado
+variavel.toFixed(2) - definir numero de casas decimais, no caso são duas
+
+QUERY SELECTOR
+pode ser usado com qualquer variavel
+Ex: variavelCriada.querySelector("atributoTag")
+.querySelectorAll - traz um array com todos
+
+MODIFICAÇÃO CSS
+Apenas para casos unicos:
+variavel.style.atributocss
+obs: caso seja um atributo com duas palavras usa-se a segunda palavra com letra maiuscula.
+Ex: alterar o background-color => variavel.style.backgroundColor = "red"
+Recomendado: (alterando pelo próprio CSS)
+1)criar a uma classe com as configurações desejadas no arquivo.css
+2) adicionar a classe ao elemento: variavel.classList.add("classeCriada")
+
+INTERATIVIDADE USUARIO:
+class.addEventListener("comando",função);
+pode-se usar tambem uma função anonima, criando como segundo parametro do addEventListener
+this = Atrelado ao dono do evento.
+target = atrelado a quem sofreu o evento
+parentNode = pai do elemendo
+ex:
+tabela.addEventListener("dblclick", function(event) {
+    var alvoEvento = event.target;
+    var paiDoAlvo = alvoEvento.parentNode; // TR = paciente = remover 
+    paiDoAlvo.remove();
+});
+
+
+FUNÇÃO:
+function nomeFunção()
+
+PREVENIR EVENTO PADRAO:
+ex: ao clicar no botão, ele tem como padrão recarregar a página.
+botao.addEventListener("click",function(event){
+	event.preventDefault();
+	//codigo dos comandos do botão desejados, agora sem o padrão
+
+ADICIONAR ELEMENTOS NO HMTL
+criar um elemento: document.createElement("elementohtml");
+alocar elementos: classePai.appendChild(classeFuturoFilho); (coloca a classeFuturoFilho dentro da classePai)
+
+OBJETOS:
+criar objeto: var objeto{
+		nome: "alonso",
+		idade: "25"
+	      }
+
+
+IF
+if simples(apenas uma linha) - é possivel colocar ele na mesma linha do if, sem chaveamento
+ex: if(a=4) a;
+
+Controlar HTML interno de um elemento
+usa-se a propriedade .innerHTML
+OBTER conteudo HTML:
+ObjetoDeUmElementoHTML.innerHTML
+EDITAR conteúdo HTML:
+ObjetoDeUmElementoHTML.innerHTML = "Novo conteúdo"
+ex: lista.innerHTML = ""; (isto vai zerar a lista)
+
+ARRAY
+lista = [] - cria array vazio
+lista = [objeto1,objeto2,objeto3] - cria array com 3 elementos
+adicionar elementos no array:
+.push
+lista.push(objetoadicionado)
+
+DELAY NO JS
+setTimeout - determina um tempo(em milisegundos) antes de executar as tarefas da função
+setTimeout(function(){
+	condiçao},500(tempo)
+
+NOME ELEMENTO
+.tagName
+Ex: document.querySelector('h1').tagName
+dica: bom para animações que deseja apenas com um tipo de elemento
+
+CONSTRUCTOR
+constructor(){}
+define os atributos da classe
+
+MVC
+model - modelo de dados
+view - determina como sera apresentado o seu modelo de dados na tela
+controller - cuida dos eventos, quando a pagina carrega ou numa ação do usuario, interage com o model, ponte entre model e a view
+
+METODO
+é tipo uma função, só que dentro da classe
+
+Objeto Imutavel
+utilizando .freeze
+Object.freeze(objetoimutavel)
+dica: utilizar no construtor para não ter que usar em toda instancia - Object.freeze(this)
+
+SUBSTITUIÇÃO DE CÓDIGO
+utilizar o "$"
+designamos um valor ao "$" para utilizar depois, encurtando o código
+ex: $ = document.querySelector.bind(document); //nesse caso foi utilizado o bind pois o querySelector referencia ao this, sem o bind ele ia acabar referenciando nada ao inves do document
+let formulario = $(#form)
+
+DESCOBRIR TIPO ELEMENTO
+typeof(elemento)
+
+FOREACH X MAP
+o foreach manipula os dados reais de um array e o map cria um novo array.
+
+FOREACH - mais indicado quando não precisa alterar o valor dos elementos de um array
+https://www.devmedia.com.br/javascript-foreach-executando-uma-funcao-para-cada-elemento-de-um-array/39808
+executa uma dada função em cada elemento de um array.
+objeto.forEach(function(aux ou sem parametro){
+cores.forEach(function(item){
+console.log(item) );
+
+MAP - mais indicado quando precisa trocar o valor dos elementos do array
+O método map() invoca a função callback passada por argumento para cada elemento do Array e devolve um novo Array como resultado.
+ex: criar uma nova lista com a mesma quantidade de números, mas cada elemento da nova lista deve ter seu valor dobrado quando for ímpar.
+	let numeros = [3,2,11,20,8,7];
+        let novosnumeros = numeros.map(item => {
+            if(item % 2 == 1){
+                return item * 2;
+            }
+            return item;
+        })
+
+
+ARROW FUNCTION
+retirar a palavra function
+1 paramentro = parametro1 => {sentença}
+2 ou mais parametros = (parametro1,parametro2) => {sentença}
+se só houver return na sentença, remove-se a palavra return e as chaves, deixando tudo em uma linha:
+(parametro1,parametro2) => parametro1 * parametro2
+OBS:se criar um arrow function no Controller, o this vai ser da classe controler, independente de quem for a instancia
+para ficar mais claro:
+O this de uma função é dinâmico, isto é, seu valor é determinado no momento em que a função é chamada. Como o this é dinâmico, é possível usar artifícios da linguagem, como a API Reflect, para alterá-lo se assim desejarmos.
+O this de uma arrow function é léxico, isto é, seu valor é determinado no local onde a arrow function for definida, ela não cria um novo this. O this de uma arrow function não pode ser alterado, mesmo se usarmos recursos da linguagem, como a API Reflect.
+
+SPREAD OPERATOR
+permite que um objeto seja adicionado a outro dividindo-os igualmente
+exemplo:
+        let lista1 = ['banana', 'laranja', 'mamão'];
+        let lista2 = ['caju', 'tangerina', 'abacaxi'];
+lista1.push(...lista2)
+lista1 = ['banana', 'laranja', 'mamão','caju', 'tangerina', 'abacaxi']
+
+DATE
+formatar na ordem que quer:
+let diaMesAno = negociacao.data.getDate()
+    + '/' + (negociacao.data.getMonth() + 1) // adiciona 1 porque começar o mes no 0
+    + '/' + negociacao.data.getFullYear(); //full para que sejam os 4 digitos do ano
+
+METODOS ESTATICOS
+quando não quiser que a classe seja instanciada e que alem disso não tenha construtor(logicamente)
+os metodos dentro da classe tem static na frente - EX: static metodoClasseSemConstrutor(){}
+Dica: avisar o desenvolvedor que não pode instanciar o metodo estatico, lançando um erro no construtor:
+throw new Error('Você não pode criar uma instância dessa classe');
+
+SPLIT
+função que permite dividir/separar uma String, retornando um array
+.split("separador")
+ex:
+stringExemplo = "João-da-Silva-Oliveira";
+resultado = stringExemplo.split("-", 3);
+// Array retornado: ["João", "da", "Silva"]
+no caso, ele usou o traço("-") como separador, ou seja, a cada traço ele separa a string,
+ Com o valor 3 para o segundo parâmetro serão consideradas apenas tres ocorrências do caractere "-" para a separação.
+
+REDUCE
+processa o array e no fim retorna um unico valor, bom para buscar um total d valor do array por exemplo
+ ${produto.reduce(function(total, n) {
+               return total + n.preço;
+         }, 0.0)
+onde o segundo parametro(0.0) é o inicio do primeiro parametro da função(total) e o segundo parametro da função é o que deseja pegar do array, no caso o preço do produto
+
+VIEW
+1)criar construtor na classe VIEW. constructor(elemento){this._elemento = elemento;}
+2)criar metodo(normalmente com nome de template(model)) retornando um template string(ao inves de usar aspas, usar acento grave [ex: `aqui contem uma template String`]) com a base HTML
+3)Criar uma div, para sinalizar no HTML o local onde o template vai ser renderizado, ou seja, avisar o VIEW onde o elemento criado vai ser incluido
+4)instanciar a classe View no construtor do Controller, passando por parametro o id da Div
+5)criar método update(model), nele, pegar o elemento do DOM e acessará a propriedade innerHTML, ou seja, vai pegar a string e vai converter em elemento do DOM
+5.1)chamar o metodo update no construtor e metodo adiciona() do Controller, passando por parametro a lista, Ou seja, quando o modelo for alterado, a lista deverá ser atualizada da tabela.
+
+HERANÇA
+classe extends classePai
+se a classe ter um metodo do mesmo nome do metodo da classe pai, o metodo da classe sobrescreve a do pai
+
+REFLECT
+até entao serve para definir o contexto do qual o this vai referenciar
+Reflect.Apply(função,contexto)
+let objeto1 = { nome: 'Bob'};
+let objeto2 = { nome: 'Leo'}
+function exibeNome() {alert(this.nome);}
+Reflect.apply(exibeNome, objeto1, []); // exibe 'Bob'
+case chamasse o this na função ia sair undefined pois ia referenciar na própria função
+
+PROXY
+camada anterior ao objeto
+Proxy(instancia,{render})
+ex: let exemplo = new Proxy(new Exemplo(),{}
+get: -> é o que vai fazer quando cada propriedade for chamada
+Ao ser chamado, ele tem como parametro o target (uma referência ao objeto original que está encapsulado pelo Proxy), a propriedade (prop) que está sendo acessada, e uma referência (receiver) para o Proxy.
+
+-----------------------
+AJAX
+
+ESTADOS DE UMA REQUISIÇÃO AJAX
+0: requisição ainda não iniciada
+1: conexão com o servidor estabelecida
+2: requisição recebida
+3: processando requisição
+4: requisição está concluída e a resposta está pronta
+
+
+ABRINDO CONEXAO
+1)instanciar um objeto XMLHttpRequest - let xhr =  new XMLHttpRequest();
+2)abrir conexao - xhr.open("GET","www.endereço.com.br/dados")
+	primeiro parametro - tipo de requisição
+	segundo parametro - endereço do servidor
+xhr.send() - executa a requisição //colocar no final da conexão sempre
+
+CONFERIR QUAL O ESTADO DA REQUISIÇÃO
+xhr.onreadystatechange = () => {
+	if(xhr.readyState == 4) {
+		if(xhr.status == 200){
+			console.log('Obtendo as negociações do servidor.')
+		}else{ console.log('Não foi possível obter as negociações do servidor.')
+}
+
+PROPRIEDADES XMLHttpRequest
+.onreadystatechange - guarda uma função para ser executada automaticamente cada vez que há uma alteração no estado da requisição
+.responseText - requisições retornadas pelo servidor (em uma String)
+	JSON.parse(xhr.responseText)); - converte a string em um array de objetos
+
+
+TRANSFORMAR OBJETO PADRAO DE ARRAY EM UM OBJETO TIPO ESPECIFICO DE ARRAY
+JSON.parse(xhr.responseText).map(objeto => new classeDesejada(objeto.data, objeto.quantidade, objeto.valor));
+
+PROMISE
+utilizar para um fato com resultado e erro
+metodo(){ 
+	return new Promise((resolve,reject) => {
+		sentença da função
+		resolve(sentença caso tenha resultado)
+		reject(sentença caso tenha erro)}
+metodo().then(função com o que vai acontecer caso tenha resultado)
+metodo().catch(função com o que vai acontecer caso dê erro)
+
+FETCH
+O fetch() nos retorna uma Promise. Essa Promise retorna um objeto Response com informações da resposta do servidor. Como queremos pegar a resposta em formato JSON, basta executar a função json().
+	1ºp(obrigatório) - String que indica o endereço de onde iremos fazer a requisição
+	2ºp - onde podemos passar um objeto de configuração. É nele onde indicamos o método da requisição, cabeçalho, corpo, etc. (ex: ,{method:'POST'}
+
+DATASET
+recuperar elementos setados no arquivo html
+no html:
+data-id = 1
+no js:
+console.log(dataset.id) - vai retornar o id
+
